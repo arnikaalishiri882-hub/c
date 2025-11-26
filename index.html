@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="آزمایشگاه تعاملی مجموعه‌های ریاضی - ابزار آموزشی برای کار با مجموعه‌ها">
+    <title>آزمایشگاه مجموعه‌ها</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header role="banner">
+            <h1 id="main-title">آزمایشگاه مجموعه‌ها</h1>
+        </header>
+
+        <main role="main">
+            <section id="controls" aria-labelledby="controls-heading">
+                <h2 id="controls-heading" class="sr-only">کنترل‌های اصلی</h2>
+                <button id="startBtn" class="btn btn-primary">شروع عملیات</button>
+                <button id="showSetsBtn" class="btn btn-secondary">نمایش همه مجموعه‌ها</button>
+                <button id="addSetBtn" class="btn btn-success">➕ مجموعه جدید</button>
+                <button id="undoBtn" class="btn btn-warning" disabled>↶ بازگشت</button>
+            </section>
+
+            <section id="step" aria-live="polite">
+                <!-- محتوای پویا -->
+            </section>
+
+            <section id="sets-list" class="sets-list" style="display: none;" aria-label="لیست مجموعه‌ها">
+                <!-- لیست مجموعه‌ها -->
+            </section>
+        </main>
+    </div>
+
+    <!-- کیبورد ریاضی هوشمند -->
+    <div id="keyboard" class="keyboard" role="dialog" aria-label="کیبورد ریاضی" aria-modal="true">
+        <div class="keyboard-header">
+            <span>⌨️ کیبورد ریاضی</span>
+            <button type="button" class="btn-close-kb">✖</button>
+        </div>
+        
+        <div class="keyboard-rows">
+            <!-- ردیف اعداد -->
+            <div class="keyboard-row">
+                <button type="button" class="btn-keyboard" data-symbol="1">1</button>
+                <button type="button" class="btn-keyboard" data-symbol="2">2</button>
+                <button type="button" class="btn-keyboard" data-symbol="3">3</button>
+                <button type="button" class="btn-keyboard" data-symbol="4">4</button>
+                <button type="button" class="btn-keyboard" data-symbol="5">5</button>
+                <button type="button" class="btn-keyboard" data-symbol="6">6</button>
+                <button type="button" class="btn-keyboard" data-symbol="7">7</button>
+                <button type="button" class="btn-keyboard" data-symbol="8">8</button>
+                <button type="button" class="btn-keyboard" data-symbol="9">9</button>
+                <button type="button" class="btn-keyboard" data-symbol="0">0</button>
+            </div>
+
+            <!-- ردیف عملیات اصلی -->
+            <div class="keyboard-row">
+                <button type="button" class="btn-keyboard" data-symbol="∪">∪</button>
+                <button type="button" class="btn-keyboard" data-symbol="∩">∩</button>
+                <button type="button" class="btn-keyboard" data-symbol="−">−</button>
+                <button type="button" class="btn-keyboard" data-symbol="⊂">⊂</button>
+                <button type="button" class="btn-keyboard" data-symbol="⊆">⊆</button>
+                <button type="button" class="btn-keyboard" data-symbol="∈">∈</button>
+                <button type="button" class="btn-keyboard" data-symbol="∉">∉</button>
+                <button type="button" class="btn-keyboard" data-symbol="∅">∅</button>
+            </div>
+            
+            <!-- ردیف مجموعه‌های جهانی -->
+            <div class="keyboard-row">
+                <button type="button" class="btn-keyboard" data-symbol="ℕ">ℕ</button>
+                <button type="button" class="btn-keyboard" data-symbol="𝕎">𝕎</button>
+                <button type="button" class="btn-keyboard" data-symbol="ℤ">ℤ</button>
+                <button type="button" class="btn-keyboard" data-symbol="ℚ">ℚ</button>
+                <button type="button" class="btn-keyboard" data-symbol="ℝ">ℝ</button>
+                <button type="button" class="btn-keyboard" data-symbol="ℚ′">ℚ′</button>
+            </div>
+            
+            <!-- ردیف نمادهای ویژه -->
+            <div class="keyboard-row">
+                <button type="button" class="btn-keyboard" data-symbol="√">√</button>
+                <button type="button" class="btn-keyboard" data-symbol="π">π</button>
+                <button type="button" class="btn-keyboard" data-symbol="∞">∞</button>
+                <button type="button" class="btn-keyboard" data-symbol="⁄">⁄</button>
+                <button type="button" class="btn-keyboard" data-symbol="|">|</button>
+                <button type="button" class="btn-keyboard" data-symbol=",">,</button>
+                <button type="button" class="btn-keyboard" data-symbol="-">-</button>
+            </div>
+            
+            <!-- ردیف پرانتز و آکولاد -->
+            <div class="keyboard-row">
+                <button type="button" class="btn-keyboard" data-symbol="(">(</button>
+                <button type="button" class="btn-keyboard" data-symbol=")">)</button>
+                <button type="button" class="btn-keyboard" data-symbol="{">{</button>
+                <button type="button" class="btn-keyboard" data-symbol="}">}</button>
+                <button type="button" class="btn-keyboard space-btn" data-symbol=" ">فاصله</button>
+                <button type="button" class="btn-keyboard backspace-btn" data-symbol="backspace">⌫</button>
+            </div>
+        </div>
+        
+        <div class="keyboard-footer">
+            <small>از کیبورد دستگاه برای تایپ حروف و از این کیبورد برای نمادها استفاده کنید</small>
+        </div>
+    </div>
+
+    <button type="button" id="kbBtn" class="kb-toggle">⌨️</button>
+
+    <!-- دکمه دیباگ مخفی -->
+    <button type="button" id="debugBtn" class="debug-toggle" title="برای توسعه‌دهندگان">🐛</button>
+
+    <!-- پیام‌های سیستمی -->
+    <div id="systemMessages" class="system-messages" aria-live="polite"></div>
+
+    <noscript>
+        <div class="noscript-warning">
+            برای استفاده کامل از این برنامه، لطفاً جاوااسکریپت مرورگر خود را فعال کنید.
+        </div>
+    </noscript>
+
+    <script src="script.js"></script>
+</body>
+</html>
